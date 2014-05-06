@@ -1,14 +1,13 @@
-
 #html("home:static/lib/mod.js")
         #head
                 <meta charset="utf-8"/>
 
-                #if($info.imgs) 
-                    <img src="$info.imgs" border=0> 
-                #else 
-                    <img src="noPhoto.jpg"> 
+                #if($info.imgs)
+                    <img src="$info.imgs" border=0>
+                #else
+                    <img src="noPhoto.jpg">
                 #end
-               
+
         #end
 
         #body
@@ -22,11 +21,11 @@
                         __inline("./a.js");
                         require('a.js');
                         var gif = __uri('images/logo.gif');
-                        
-                        // @require.async ./index.js
+
+                        //
 
                         /*
-                         * @require.async ./index.js
+                         *
                          */
                 #end
 
@@ -35,18 +34,18 @@
                         @import url('a.css?__inline');
                         /**
                          * @require a.css
-                         */                
+                         */
                 #end
 
-                #if($msg) 
-                        <script> 
-                                alert('$!msg'); 
-                        </script> 
-                #end 
+                #if($msg)
+                        <script>
+                                alert('$!msg');
+                        </script>
+                #end
 
-                #foreach( $info in $hotList1) 
-                    <a href="/bbsdoc.ejf?easyJWebCommand=show&&cid=$!info.cid" target="_blank">$!info.title</a><br> 
-                #end 
+                #foreach( $info in $hotList1)
+                    <a href="/bbsdoc.ejf?easyJWebCommand=show&&cid=$!info.cid" target="_blank">$!info.title</a><br>
+                #end
 
         #end
 
