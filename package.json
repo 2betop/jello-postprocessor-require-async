@@ -1,5 +1,5 @@
 {
-  "name": "fisv-postprocessor-require-async",
+  "name": "fis-postprocessor-velocity-require-async",
   "version": "0.0.0",
   "description": "fisv-postprocessor-require-async",
   "main": "index.js",
