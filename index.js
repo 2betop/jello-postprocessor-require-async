@@ -69,9 +69,9 @@ function parseHtml(content, file, conf){
         }
         return m;
     });
-    reg = new RegExp('('+label+'\\bscript\\b)([\\s\\S]*?)(?='+label+'\\bend\\b|$)', 'ig');    
+    reg = new RegExp('('+label+'\\bscript\\b\\s*\\([\\s\\S]*?\\))([\\s\\S]*?)(?='+label+'\\bend\\b|$)', 'ig');    
     return content.replace(reg, function(m, $1, $2) {
-        if($1){// #script 
+        if($1){// #script ( ... )
             m = $1 + parseJs($2, file, conf);
         }
         return m;

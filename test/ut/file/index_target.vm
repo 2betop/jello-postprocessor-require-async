@@ -1,5 +1,5 @@
 #html("home:static/lib/mod.js")
-        #head
+        #head()
                 <meta charset="utf-8"/>
 
                 #if($info.imgs)
@@ -10,13 +10,13 @@
 
         #end
 
-        #body
+        #body ()
                 #require("home:static/index/index.css")
                 #widget("home:widget/A/A.tpl")
 
                 ## 通过script插件收集加载组件化JS代码
 
-                #script
+                #script($info in $hotList1   )
                         require.async("home:static/ui/B/B.js");
                         __inline("./a.js");
                         require('a.js');
@@ -29,7 +29,7 @@
                          */
                 #end
 
-                #style
+                #style()
                         @import url('./a.css');
                         @import url('a.css?__inline');
                         /**
