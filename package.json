@@ -1,6 +1,6 @@
 {
   "name": "jello-postprocessor-require-async",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "jello-postprocessor-require-async",
   "main": "index.js",
   "directories": {
@@ -18,10 +18,14 @@
     "fisv",
     "postprocessor"
   ],
+  "dependencies":{
+    "fis-velocity-label-parser" : "0.0.2"
+  },
   "devDependencies": {
     "chai": "*",
     "mocha": "*",
-    "fis":"*"
+    "fis":"*",
+    "fis-velocity-label-parser" : "*"
   },
   "author": "lily-zhangying",
   "license": "MIT",

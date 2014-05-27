@@ -27,6 +27,21 @@
                         /*
                          *
                          */
+
+
+                          ##测试标签嵌套
+                        #foreach( $info in $hotList1) 
+                            <a href="/bbsdoc.ejf?easyJWebCommand=show&&cid=$!info.cid" target="_blank">$!info.title</a><br> 
+                       
+                            #if($msg) 
+                                <script> 
+                                        alert('$!msg'); 
+                                </script> 
+                            #end 
+
+                        #end 
+
+                        
                 #end
 
                 #style()

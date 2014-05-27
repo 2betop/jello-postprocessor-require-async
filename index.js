@@ -62,6 +62,8 @@ function parseJs(content, file, conf){
 }
 
 function parseHtml(content, file, conf){
+
+    //处理 <script>标签
     var reg = /(<script(?:\s+[\s\S]*?["'\s\w\/]>|\s*>))([\s\S]*?)(?=<\/script>|$)/ig;
     content = content.replace(reg, function(m, $1, $2) {
         if($1){//<script>
@@ -69,13 +71,19 @@ function parseHtml(content, file, conf){
         }
         return m;
     });
-    reg = new RegExp('('+label+'\\bscript\\b\\s*\\([\\s\\S]*?\\))([\\s\\S]*?)(?='+label+'\\bend\\b|$)', 'ig');    
-    return content.replace(reg, function(m, $1, $2) {
-        if($1){// #script ( ... )
-            m = $1 + parseJs($2, file, conf);
+
+    //处理 #script()标签
+    var labelParser = require('fis-velocity-label-parser');
+    ret = labelParser(content, conf);
+    var content_new = fis.util.clone(content);
+    fis.util.map(ret, function(k, v){
+        if(v.start_label == '#script'){
+            var js_before = content.substring(v.content_start_index, v.content_end_index);
+            var js_after = parseJs(js_before, file, conf);
+            content_new = content_new.replace(js_before, js_after);
         }
-        return m;
     });
+    return content_new;
 }
 
 module.exports = function(content, file, conf){
