@@ -1,6 +1,6 @@
 {
   "name": "jello-postprocessor-require-async",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "jello-postprocessor-require-async",
   "main": "index.js",
   "directories": {
@@ -19,7 +19,7 @@
     "postprocessor"
   ],
   "dependencies":{
-    "fis-velocity-label-parser" : "0.0.2"
+    "fis-velocity-label-parser" : "0.0.3"
   },
   "devDependencies": {
     "chai": "*",
