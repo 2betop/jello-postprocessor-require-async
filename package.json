@@ -1,6 +1,6 @@
 {
   "name": "jello-postprocessor-require-async",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "jello-postprocessor-require-async",
   "main": "index.js",
   "directories": {

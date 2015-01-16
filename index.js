@@ -61,7 +61,7 @@ function parseJs(content, file, conf){
     });
 }
 
-function parseHtml(content, file, conf){
+function parseVm(content, file, conf){
 
     //处理 <script>标签
     var reg = /(<script(?:\s+[\s\S]*?["'\s\w\/]>|\s*>))([\s\S]*?)(?=<\/script>|$)/ig;
@@ -86,6 +86,21 @@ function parseHtml(content, file, conf){
     return content_new;
 }
 
+function parseJsp(content, file, conf) {
+    var reg = /<%--(?!\[)([\s\S]*?)(?:-->|$)|(<fis\:script(?:(?=\s)[\s\S]*?["'\s\w\/\-]>|>))([\s\S]*?)(?=<\/fis\:script\s*>|$)/ig;
+    var callback = function(m, comment, script, scriptbody) {
+        if (script) {
+            m = script + parseJs(scriptbody, file, conf);
+        }else if (comment) {
+            m = analyseComment(file, comment);
+        }
+
+        return m;
+    };
+
+    return content.replace(reg, callback);
+}
+
 module.exports = function(content, file, conf){
     label = pregQuote(label);
 
@@ -96,7 +111,7 @@ module.exports = function(content, file, conf){
     }
     file.extras.async = [];
     if(file.isHtmlLike){
-        content = parseHtml(content, file, conf);
+        content = file.rExt === '.jsp' ? parseJsp(content, file, conf) : parseVm(content, file, conf);
     } else if(file.rExt === '.js'){
         content = parseJs(content, file, conf);
     }
