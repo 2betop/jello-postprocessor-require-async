@@ -88,7 +88,7 @@ function parseVm(content, file, conf){
 
 function parseJsp(content, file, conf) {
     var reg = /(<fis\:script(?:(?=\s)[\s\S]*?["'\s\w\/\-]>|>))([\s\S]*?)(?=<\/fis\:script\s*>|$)/ig;
-    var callback = function(m, comment, script, scriptbody) {
+    var callback = function(m, script, scriptbody) {
         if (script) {
             m = script + parseJs(scriptbody, file, conf);
         }
