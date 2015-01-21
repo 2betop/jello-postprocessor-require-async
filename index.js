@@ -55,7 +55,7 @@ function parseJs(content, file, conf){
                     break;
             }
         } else if (comment) {
-            m = analyseComment(file, comment);
+            analyseComment(file, comment);
         }
         return m;
     });
@@ -87,14 +87,11 @@ function parseVm(content, file, conf){
 }
 
 function parseJsp(content, file, conf) {
-    var reg = /<%--(?!\[)([\s\S]*?)(?:-->|$)|(<fis\:script(?:(?=\s)[\s\S]*?["'\s\w\/\-]>|>))([\s\S]*?)(?=<\/fis\:script\s*>|$)/ig;
+    var reg = /(<fis\:script(?:(?=\s)[\s\S]*?["'\s\w\/\-]>|>))([\s\S]*?)(?=<\/fis\:script\s*>|$)/ig;
     var callback = function(m, comment, script, scriptbody) {
         if (script) {
             m = script + parseJs(scriptbody, file, conf);
-        }else if (comment) {
-            m = analyseComment(file, comment);
         }
-
         return m;
     };
 
